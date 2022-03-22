@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DesignSurface">
+    <option name="filePathToZoomLevelMap">
+      <map>
+        <entry key="..\:/Test/app/src/main/res/drawable/gradian_background.xml" value="0.1" />
+        <entry key="..\:/Test/app/src/main/res/drawable/gradian_background2.xml" value="0.183" />
+        <entry key="..\:/Test/app/src/main/res/drawable/gradient_background2.xml" value="0.2155" />
+        <entry key="..\:/Test/app/src/main/res/drawable/ic_baseline_add_circle_24.xml" value="0.2155" />
+        <entry key="..\:/Test/app/src/main/res/drawable/ic_baseline_arrow_back_24.xml" value="0.1745" />
+        <entry key="..\:/Test/app/src/main/res/drawable/ic_baseline_home_24.xml" value="0.2125" />
+        <entry key="..\:/Test/app/src/main/res/drawable/ic_baseline_keyboard_arrow_left_24.xml" value="0.1745" />
+        <entry key="..\:/Test/app/src/main/res/drawable/ic_baseline_search_24.xml" value="0.1" />
+        <entry key="..\:/Test/app/src/main/res/drawable/ic_baseline_star_rate_24.xml" value="0.1435" />
+        <entry key="..\:/Test/app/src/main/res/drawable/items_select.xml" value="0.2155" />
+        <entry key="..\:/Test/app/src/main/res/drawable/rond_profile.xml" value="0.2155" />
+        <entry key="..\:/Test/app/src/main/res/drawable/round_background.xml" value="0.1745" />
+        <entry key="..\:/Test/app/src/main/res/drawable/round_background_white.xml" value="0.1" />
+        <entry key="..\:/Test/app/src/main/res/drawable/round_edit_text.xml" value="0.1745" />
+        <entry key="..\:/Test/app/src/main/res/drawable/select_item.xml" value="0.1495" />
+        <entry key="..\:/Test/app/src/main/res/layout/activity_authenticate.xml" value="0.20833333333333334" />
+        <entry key="..\:/Test/app/src/main/res/layout/activity_category.xml" value="0.25" />
+        <entry key="..\:/Test/app/src/main/res/layout/activity_confirm.xml" value="0.1" />
+        <entry key="..\:/Test/app/src/main/res/layout/activity_home.xml" value="0.33" />
+        <entry key="..\:/Test/app/src/main/res/layout/activity_login.xml" value="0.20833333333333334" />
+        <entry key="..\:/Test/app/src/main/res/layout/activity_main.xml" value="0.26101141924959215" />
+        <entry key="..\:/Test/app/src/main/res/layout/activity_menu.xml" value="0.25" />
+        <entry key="..\:/Test/app/src/main/res/layout/activity_orther_profile.xml" value="0.20833333333333334" />
+        <entry key="..\:/Test/app/src/main/res/layout/activity_profile.xml" value="0.4166666666666667" />
+        <entry key="..\:/Test/app/src/main/res/layout/activity_splash.xml" value="0.33" />
+        <entry key="..\:/Test/app/src/main/res/layout/activity_splash2.xml" value="0.14" />
+        <entry key="..\:/Test/app/src/main/res/layout/activity_test.xml" value="0.25" />
+        <entry key="..\:/Test/app/src/main/res/layout/activity_welcome.xml" value="0.3110419906687403" />
+        <entry key="..\:/Test/app/src/main/res/layout/concerned_user.xml" value="0.4166666666666667" />
+        <entry key="..\:/Test/app/src/main/res/layout/filter_layout.xml" value="0.20833333333333334" />
+        <entry key="..\:/Test/app/src/main/res/layout/first_recycleview_item_layout.xml" value="0.20833333333333334" />
+        <entry key="..\:/Test/app/src/main/res/layout/fragment_account.xml" value="0.2969543147208122" />
+        <entry key="..\:/Test/app/src/main/res/layout/fragment_category.xml" value="0.33" />
+        <entry key="..\:/Test/app/src/main/res/layout/fragment_category_list.xml" value="0.25" />
+        <entry key="..\:/Test/app/src/main/res/layout/fragment_category_list_list.xml" value="0.33" />
+        <entry key="..\:/Test/app/src/main/res/layout/fragment_favorite.xml" value="0.1" />
+        <entry key="..\:/Test/app/src/main/res/layout/fragment_favourites.xml" value="0.20833333333333334" />
+        <entry key="..\:/Test/app/src/main/res/layout/fragment_home.xml" value="0.25" />
+        <entry key="..\:/Test/app/src/main/res/layout/fragment_menu.xml" value="0.19230769230769232" />
+        <entry key="..\:/Test/app/src/main/res/layout/fragment_menu_publication.xml" value="0.20833333333333334" />
+        <entry key="..\:/Test/app/src/main/res/layout/fragment_notification.xml" value="0.20833333333333334" />
+        <entry key="..\:/Test/app/src/main/res/layout/fragment_profile.xml" value="0.33" />
+        <entry key="..\:/Test/app/src/main/res/layout/fragment_publish.xml" value="0.20833333333333334" />
+        <entry key="..\:/Test/app/src/main/res/layout/fragment_scrolling.xml" value="0.1" />
+        <entry key="..\:/Test/app/src/main/res/layout/layout.xml" value="0.19429347826086957" />
+        <entry key="..\:/Test/app/src/main/res/layout/menu_card.xml" value="0.5246523388116309" />
+        <entry key="..\:/Test/app/src/main/res/layout/menu_profile.xml" value="0.19270833333333334" />
+        <entry key="..\:/Test/app/src/main/res/layout/publication_item.xml" value="0.33" />
+        <entry key="..\:/Test/app/src/main/res/layout/ratting_percentage.xml" value="0.1" />
+        <entry key="..\:/Test/app/src/main/res/layout/ratting_user.xml" value="0.1" />
+        <entry key="..\:/Test/app/src/main/res/layout/row_item_layout.xml" value="0.2836676217765043" />
+        <entry key="..\:/Test/app/src/main/res/layout/search_bar.xml" value="0.1419950301739439" />
+        <entry key="..\:/Test/app/src/main/res/layout/tool_bar_layout.xml" value="0.22" />
+        <entry key="..\:/Test/app/src/main/res/layout/tool_bar_scroll.xml" value="0.20833333333333334" />
+        <entry key="..\:/Test/app/src/main/res/layout/user_author.xml" value="0.1596292481977343" />
+        <entry key="..\:/Test/app/src/main/res/layout/user_publications.xml" value="0.1" />
+        <entry key="..\:/Test/app/src/main/res/menu/bottom_nav_menu.xml" value="0.1" />
+        <entry key="..\:/Test/app/src/main/res/menu/bottom_navigation.xml" value="0.13" />
+        <entry key="..\:/Test/app/src/main/res/menu/filter_menu.xml" value="0.20833333333333334" />
+        <entry key="..\:/Test/app/src/main/res/menu/menu_option_menu.xml" value="0.33" />
+        <entry key="..\:/Test/app/src/main/res/menu/menu_profile.xml" value="0.19270833333333334" />
+        <entry key="..\:/Test/app/src/main/res/menu/profile_option_menu.xml" value="0.20833333333333334" />
+        <entry key="..\:/Test/app/src/main/res/menu/simple_menu.xml" value="0.20833333333333334" />
+      </map>
+    </option>
+  </component>
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="Android Studio default JDK" project-jdk-type="JavaSDK">
+    <output url="file://$PROJECT_DIR$/build/classes" />
+  </component>
+  <component name="ProjectType">
+    <option name="id" value="Android" />
+  </component>
+</project>

@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "810247728323",
+    "project_id": "pickeat-8d10d",
+    "storage_bucket": "pickeat-8d10d.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:810247728323:android:d57879b85e626ea7ac4676",
+        "android_client_info": {
+          "package_name": "net.tipam2022.pickeat"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "810247728323-0dmqcvn8kog1qmnd1hrm440iot6ijo2d.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD-Z9oxoNGsgW512bfhhN5CfD5ndk3xC0k"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "810247728323-0dmqcvn8kog1qmnd1hrm440iot6ijo2d.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
