@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/menu_cardHome"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/circleImageView2"
+            android:layout_width="63dp"
+            android:layout_height="61dp"
+            android:layout_marginTop="16dp"
+            android:src="@color/black"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.039"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/name_user"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
+            android:text="Name user"
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            app:layout_constraintBottom_toBottomOf="@+id/circleImageView2"
+            app:layout_constraintStart_toEndOf="@+id/circleImageView2"
+            app:layout_constraintTop_toTopOf="@+id/circleImageView2"
+            app:layout_constraintVertical_bias="0.214" />
+
+        <ImageView
+            android:id="@+id/imagemenue"
+            android:layout_width="467dp"
+            android:layout_height="235dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:background="@drawable/round_edit_text"
+            android:scaleType="centerCrop"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/circleImageView2"
+            app:layout_constraintVertical_bias="0.108"
+            app:srcCompat="@drawable/takos" />
+
+        <TextView
+            android:id="@+id/description"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="Description"
+            app:layout_constraintEnd_toEndOf="@+id/imagemenue"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@+id/imagemenue"
+            app:layout_constraintTop_toBottomOf="@+id/imagemenue" />
+
+        <ImageButton
+            android:id="@+id/like"
+            android:layout_width="58dp"
+            android:layout_height="43dp"
+            android:layout_marginStart="12dp"
+            android:background="@drawable/ic_baseline_favorite_border_24"
+            app:layout_constraintBottom_toBottomOf="@+id/imagemenue"
+            app:layout_constraintStart_toEndOf="@+id/imagemenue"
+            app:layout_constraintTop_toTopOf="@+id/imagemenue"
+            app:layout_constraintVertical_bias="0.046"
+            app:srcCompat="@drawable/coeur" />
+
+        <ImageButton
+            android:id="@+id/comment"
+            android:layout_width="43dp"
+            android:layout_height="34dp"
+            android:layout_marginTop="64dp"
+            android:background="@drawable/com"
+            app:layout_constraintEnd_toEndOf="@+id/like"
+            app:layout_constraintHorizontal_bias="0.533"
+            app:layout_constraintStart_toStartOf="@+id/like"
+            app:layout_constraintTop_toTopOf="@+id/like" />
+
+        <ImageButton
+            android:id="@+id/send"
+            android:layout_width="48dp"
+            android:layout_height="42dp"
+            android:layout_marginTop="24dp"
+
+            android:background="@drawable/send"
+            app:layout_constraintEnd_toEndOf="@+id/comment"
+            app:layout_constraintHorizontal_bias="0.4"
+            app:layout_constraintStart_toStartOf="@+id/comment"
+            app:layout_constraintTop_toBottomOf="@+id/comment" />
+
+        <ImageButton
+            android:id="@+id/paiement"
+            android:layout_width="54dp"
+            android:layout_height="41dp"
+            android:layout_marginTop="16dp"
+            android:background="@drawable/visa"
+            app:layout_constraintEnd_toEndOf="@+id/send"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="@+id/send"
+            app:layout_constraintTop_toBottomOf="@+id/send" />
+
+        <TextView
+            android:id="@+id/info"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:text="info"
+            app:layout_constraintEnd_toEndOf="@+id/name_user"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@+id/name_user"
+            app:layout_constraintTop_toTopOf="@+id/name_user" />
+
+        <ImageButton
+            android:id="@+id/imageButton7"
+            android:layout_width="41dp"
+            android:layout_height="49dp"
+            android:layout_marginStart="328dp"
+
+            android:layout_marginBottom="8dp"
+            android:background="@drawable/verticalmenu"
+            app:layout_constraintBottom_toTopOf="@+id/like"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.422"
+            app:layout_constraintStart_toEndOf="@+id/name_user"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.326" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</com.google.android.material.card.MaterialCardView>

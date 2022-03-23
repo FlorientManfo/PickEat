@@ -7,24 +7,182 @@
     tools:context=".Home">
 
     <!-- TODO: Update blank fragment layout -->
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <Button
-            android:id="@+id/action"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Button"
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/userindex"
+            android:layout_width="57dp"
+            android:layout_height="54dp"
+            android:layout_marginTop="16dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.087"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:src="@drawable/v5"/>
+
+        <ScrollView
+            android:layout_width="419dp"
+            android:layout_height="657dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintStart_toStartOf="parent">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+
+                <ScrollView
+                    android:id="@+id/scrollView2"
+                    android:layout_width="375dp"
+                    android:layout_height="73dp"
+                    android:layout_marginTop="36dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.555"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/userindex">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="29dp"
+                        android:orientation="vertical">
+
+                        <de.hdodenhof.circleimageview.CircleImageView
+                            android:layout_width="68dp"
+                            android:layout_height="70dp"
+                            android:src="@drawable/takos" />
+                    </LinearLayout>
+                </ScrollView>
+
+       <androidx.constraintlayout.widget.ConstraintLayout
+           android:layout_marginTop="12dp"
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content">
+
+           <TextView
+               android:id="@+id/info"
+               android:layout_width="385dp"
+               android:layout_height="33dp"
+               android:layout_marginLeft="10dp"
+               android:text="Les mieux notés"
+               android:textColor="@color/black"
+               android:textSize="24sp"
+               android:textStyle="normal|italic"
+               app:layout_constraintBottom_toBottomOf="parent"
+               app:layout_constraintEnd_toEndOf="parent"
+               app:layout_constraintStart_toStartOf="parent" />
+
+           <TextView
+
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:text="see all(12)"
+               app:layout_constraintBottom_toBottomOf="@+id/info"
+               app:layout_constraintEnd_toEndOf="parent"
+               app:layout_constraintHorizontal_bias="0.949"
+               app:layout_constraintStart_toStartOf="@+id/info"
+               app:layout_constraintTop_toTopOf="@+id/info" />
+       </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recyclerView"
+                    android:layout_width="407dp"
+                    android:layout_height="340dp"
+                    android:layout_marginTop="16dp"
+                    android:orientation="horizontal"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/info"
+                    tools:listitem="@layout/publication_item"
+                    android:layout_marginBottom="10dp"/>
+
+               <androidx.constraintlayout.widget.ConstraintLayout
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content">
+
+                   <TextView
+                       android:id="@+id/categories"
+                       android:layout_width="399dp"
+                       android:layout_height="29dp"
+                       android:layout_marginLeft="15dp"
+                       android:text="Categories"
+                       android:textColor="@color/black"
+                       android:textSize="20sp"
+                       android:textStyle="bold|italic"
+                       app:layout_constraintBottom_toBottomOf="parent"
+                       app:layout_constraintEnd_toEndOf="parent"
+                       app:layout_constraintStart_toStartOf="parent"
+                       app:layout_constraintTop_toTopOf="parent" />
+
+                   <TextView
+                       android:layout_width="wrap_content"
+                       android:layout_height="wrap_content"
+                       android:text="see all(15)"
+                       app:layout_constraintBottom_toBottomOf="parent"
+                       app:layout_constraintEnd_toEndOf="parent"
+                       app:layout_constraintHorizontal_bias="0.908"
+                       app:layout_constraintStart_toStartOf="parent"
+                       app:layout_constraintTop_toTopOf="parent" />
+               </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:layout_width="match_parent"
+                    android:layout_height="111dp"
+                    android:layout_marginTop="4dp"
+                    android:orientation="horizontal"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/categories"
+                    tools:listitem="@layout/fragment_category_list"
+                    android:layout_marginBottom="10dp"/>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp">
+
+                    <TextView
+                        android:id="@+id/textView15"
+                        android:layout_width="wrap_content"
+                        android:layout_height="23dp"
+                        android:layout_margin="18dp"
+                        android:layout_marginTop="16dp"
+                        android:text="Friends"
+                        android:textColor="@color/black"
+                        android:textSize="18dp"
+                        android:textStyle="bold|italic"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.044"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+
+                    <TextView
+                        android:id="@+id/textView14"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="see all(11)"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.866"
+                        app:layout_constraintStart_toEndOf="@+id/textView15" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:layout_width="match_parent"
+                    android:layout_height="103dp"
+                    tools:listitem="@layout/circlefriend" />
+            </LinearLayout>
+        </ScrollView>
+
+
+
     </androidx.constraintlayout.widget.ConstraintLayout>
+
+
 
 </FrameLayout>

@@ -20,7 +20,7 @@
             android:id="@+id/imagebouf"
             android:layout_width="351dp"
             android:layout_height="249dp"
-            android:background="@drawable/login"
+            android:background="@drawable/bro"
             android:scaleType="centerCrop"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
