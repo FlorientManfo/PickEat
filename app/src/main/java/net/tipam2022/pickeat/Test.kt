@@ -33,9 +33,9 @@ class Test : AppCompatActivity() {
         binding = ActivityTestBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        val recyclerView = binding.categoryList
+        /*val recyclerView = binding.categoryList
         recyclerView.layoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
         recyclerView.adapter = CategoryAdapter(categories)
-        println(CategoryAdapter(categories).itemCount)
+        println(CategoryAdapter(categories).itemCount)*/
     }
 }

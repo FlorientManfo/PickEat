@@ -10,7 +10,7 @@
         android:id="@+id/toolbar_scroll"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:menu="@menu/simple_menu"
+        app:menu="@menu/top_menu_option"
         app:navigationIcon="@drawable/ic_baseline_keyboard_arrow_left_24"
         app:title="Menu list of : "
         app:titleTextColor="@color/white"

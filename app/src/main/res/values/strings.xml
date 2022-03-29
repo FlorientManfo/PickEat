@@ -111,4 +111,5 @@
     <string name="text_choice_7">Fresh</string>
     <string name="search_title">Search</string>
     <string name="title_meal">"List of "</string>
+    <string name="filter_title">Filter</string>
 </resources>

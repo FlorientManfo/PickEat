@@ -1,18 +1,16 @@
 package net.tipam2022.pickeat.adapters
 
-import android.net.Uri
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
-import android.widget.RatingBar
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import net.tipam2022.pickeat.R
-import net.tipam2022.pickeat.entities.Publication
+import net.tipam2022.pickeat.entities.PublicationModel
 
 
-class PublicationAdapter(private val publications : ArrayList<Publication>) : RecyclerView.Adapter<PublicationAdapter.MyViewHolder>() {
+class PublicationAdapter(private val publicationModels : ArrayList<PublicationModel>) : RecyclerView.Adapter<PublicationAdapter.MyViewHolder>() {
 
     override fun onCreateViewHolder(parent : ViewGroup, viewType : Int) : MyViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.publication_item, parent, false)
@@ -20,25 +18,26 @@ class PublicationAdapter(private val publications : ArrayList<Publication>) : Re
     }
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
-        holder.category.text = publications[position].meal.categoryName
-        holder.meal.text = publications[position].meal.name
-        holder.price.text = publications[position].price.toString()
-        holder.description.text = publications[position].description
+        holder.category.text = publicationModels[position].mealModel.categoryName
+        holder.meal.text = publicationModels[position].mealModel.name
+        holder.price.text = publicationModels[position].price.toString()
+        holder.description.text = publicationModels[position].description
+        holder.photo.setImageResource(publicationModels[position].image)
     }
 
     override fun getItemCount (): Int {
-        return publications.size
+        return publicationModels.size
     }
 
     inner class MyViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        //internal lateinit var photo: ImageView
+        internal lateinit var photo: ImageView
         internal  lateinit var category: TextView
         internal lateinit var meal: TextView
         internal lateinit var price: TextView
         internal lateinit var description: TextView
-        internal lateinit var notation: RatingBar
 
         init {
+            photo = itemView.findViewById(R.id.publicationImage) as ImageView
             category = itemView.findViewById<View>(R.id.category) as TextView
             meal = itemView.findViewById<View>(R.id.meal) as TextView
             price = itemView.findViewById<View>(R.id.price) as TextView

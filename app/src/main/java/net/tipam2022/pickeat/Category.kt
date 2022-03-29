@@ -3,12 +3,18 @@ package net.tipam2022.pickeat
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
+import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
+import android.widget.SearchView
+import androidx.core.view.forEach
+import androidx.core.view.get
 import androidx.core.view.size
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import net.tipam2022.pickeat.adapters.CategoryAdapter
+import net.tipam2022.pickeat.adapters.MenuAdapter
 import net.tipam2022.pickeat.databinding.FragmentCategoryBinding
 import net.tipam2022.pickeat.entities.CategoryModel
 
@@ -26,13 +32,10 @@ class Category : Fragment() {
     // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
-
+    private var isSearching: Boolean = false
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
+
     }
 
     private var categories = arrayListOf<CategoryModel>(
@@ -55,30 +58,39 @@ class Category : Fragment() {
         // Inflate the layout for this fragment
 
         binding = FragmentCategoryBinding.inflate(inflater, container, false)
-        val recyclerView = binding.categoryList
-        recyclerView.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
-        recyclerView.adapter = CategoryAdapter(categories)
-        println(recyclerView.size)
+
+        val recycleView = binding.categoryList
+        var mLayoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
+        recycleView!!.layoutManager = mLayoutManager
+        val mAdapter = CategoryAdapter(categories){position ->  categoryClickListener(position)}
+        recycleView!!.adapter = mAdapter
+        println(mAdapter.itemCount)
+
+        var navigationIcon = binding.toolbar.setNavigationOnClickListener {
+            var home = Home()
+            loadFragment(home)
+        }
+
         return binding.root
     }
 
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment Category.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            Category().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
-                }
-            }
+    private fun categoryClickListener(position: Int){
+        var fragment = Menu()
+        var selectedCategory = categories[position]
+        var arguments = Bundle()
+        arguments.putString("title", selectedCategory.title)
+        fragment.arguments = arguments
+        activity?.supportFragmentManager
+            ?.beginTransaction()?.replace(R.id.container, fragment)
+            ?.commit()
+    }
+
+    private fun loadFragment(fragment: Fragment) {
+        // load fragment
+        var transaction = activity?.supportFragmentManager
+        transaction?.beginTransaction()
+            ?.replace(R.id.container, fragment)
+            ?.setCustomAnimations(R.anim.slide_in_left, R.anim.slide_in_right)
+            ?.commit()
     }
 }

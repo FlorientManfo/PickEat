@@ -5,6 +5,16 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.animation.Animation
+import android.view.animation.AnimationUtils
+import android.widget.Toast
+import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.LinearLayoutManager
+import net.tipam2022.pickeat.adapters.CategoryAdapter
+import net.tipam2022.pickeat.adapters.CategoryAdapter2
+import net.tipam2022.pickeat.databinding.FragmentHomeBinding
+import net.tipam2022.pickeat.entities.CategoryModel
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -16,10 +26,24 @@ private const val ARG_PARAM2 = "param2"
  * Use the [Home.newInstance] factory method to
  * create an instance of this fragment.
  */
-class Home : Fragment() {
+class Home : Fragment() ,View.OnClickListener{
     // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
+
+    lateinit var binding: FragmentHomeBinding
+    private var categories = arrayListOf<CategoryModel>(
+        CategoryModel("Cameroonian", R.drawable.category1),
+        CategoryModel("Traditional Cameroonian", R.drawable.category1),
+        CategoryModel("Fast-Fod", R.drawable.category1),
+        CategoryModel("Chinese Meal", R.drawable.category1),
+        CategoryModel("European Meal", R.drawable.category1),
+        CategoryModel("English Meal", R.drawable.category1),
+        CategoryModel("African Meal", R.drawable.category1),
+        CategoryModel("Indian Meal", R.drawable.category1),
+        CategoryModel("Drink", R.drawable.category1),
+        CategoryModel("Other meal", R.drawable.category1)
+    )
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -34,26 +58,57 @@ class Home : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_home, container, false)
+
+        binding = FragmentHomeBinding.inflate(inflater, container, false)
+
+        binding.category.setOnClickListener(this)
+        //val controller = AnimationUtils.loadLayoutAnimation(requireContext(), R.anim.animation_scale)
+        //binding.categories.layoutAnimation = controller
+        //binding.categories.scheduleLayoutAnimation()
+
+
+        var mLayoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
+        binding.categories!!.layoutManager = mLayoutManager
+        val mAdapter = CategoryAdapter2(categories){position ->  categoryClickListener(position)}
+        binding.categories!!.adapter = mAdapter
+        println(mAdapter.itemCount)
+
+        return binding.root
     }
 
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment Home.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            Home().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
-                }
+    override fun onClick(p0: View?) {
+        when(p0){
+            binding.category->{
+                var fragment = Category()
+                loadFragment(fragment)
             }
+            binding.homeSearch->{
+                var fragment = Category()
+                var arguments = Bundle()
+                arguments.putBoolean("isSearching", true)
+                fragment.arguments = arguments
+                loadFragment(fragment)
+            }
+        }
+    }
+
+    private fun categoryClickListener(position: Int){
+        var fragment = Menu()
+        var selectedCategory = categories[position]
+        var arguments = Bundle()
+        arguments.putString("title", selectedCategory.title)
+        fragment.arguments = arguments
+        loadFragment(fragment)
+
+        //Toast.makeText(activity?.baseContext, categories[position].title, Toast.LENGTH_SHORT).show()
+    }
+
+    private fun loadFragment(fragment: Fragment) {
+        // load fragment
+        var transaction = activity?.supportFragmentManager
+        transaction?.beginTransaction()
+        ?.replace(R.id.container, fragment)
+        ?.setCustomAnimations(R.anim.slide_in_left, R.anim.slide_in_right)
+        ?.commit()
     }
 }

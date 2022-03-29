@@ -2,19 +2,24 @@
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/nav_graph">
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/navigation_home">
 
     <fragment
         android:id="@+id/navigation_home"
         android:name="com.example.bottomnavigationbar.home"
         android:label="@string/title_home"
-        tools:layout="@layout/fragment_home" />
+        tools:layout="@layout/fragment_home" >
+        <action
+            android:id="@+id/action_navigation_home_to_navigation_category"
+            app:destination="@id/navigation_category" />
+    </fragment>
 
     <fragment
         android:id="@+id/navigation_favourites"
         android:name="com.example.bottomnavigationbar.favourites"
         android:label="@string/title_favourites"
-        tools:layout="@layout/fragment_favourites" />
+        tools:layout="@layout/fragment_favourite" />
 
     <fragment
         android:id="@+id/navigation_publish"
@@ -38,17 +43,21 @@
         android:id="@+id/navigation_category"
         android:name="com.example.bottomnavigationbar.profile"
         android:label="@string/title_category"
-        tools:layout="@layout/fragment_category_list_list"/>
+        tools:layout="@layout/fragment_category">
+        <action
+            android:id="@+id/action_navigation_category_to_navigation_menu"
+            app:destination="@id/navigation_menu" />
+    </fragment>
 
     <fragment
-        android:id="@+id/navigation_meal"
+        android:id="@+id/navigation_menu"
         android:name="com.example.bottomnavigationbar.profile"
         android:label="@string/title_meal"
-        tools:layout="@layout/fragment_category_list_list"/>
+        tools:layout="@layout/fragment_menu"/>
 
     <fragment
         android:id="@+id/navigation_publication"
         android:name="com.example.bottomnavigationbar.profile"
-        android:label="{@string/title_meal} Publications"
-        tools:layout="@layout/fragment_category_list_list"/>
+        android:label="Publications"
+        tools:layout="@layout/fragment_publication"/>
 </navigation>

@@ -3,8 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:paddingBottom="?attr/actionBarSize"
+    xmlns:app="http://schemas.android.com/apk/res-auto" android:paddingBottom="?attr/actionBarSize"
     tools:context=".Menu">
 
     <androidx.coordinatorlayout.widget.CoordinatorLayout
@@ -20,7 +19,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
                 app:title="List of : "
-                app:menu="@menu/simple_menu"
+                app:menu="@menu/top_menu_option"
                 app:titleTextColor="@color/white"
                 app:navigationIcon="@drawable/ic_baseline_keyboard_arrow_left_24"
                 style="@style/Widget.MaterialComponents.Toolbar.PrimarySurface"
@@ -30,8 +29,11 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
-                <include layout="@layout/filter_layout"
-                    android:id="@+id/filter"/>
+                <ScrollView
+                    android:id="@+id/selectedChip"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                </ScrollView>
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -39,10 +41,13 @@
 
         <!-- Note: A RecyclerView can also be used -->
         <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/menuList"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             app:layout_behavior="@string/appbar_scrolling_view_behavior"
-            tools:listitem="@layout/menu_card">
+            tools:listitem="@layout/menu_card"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            android:orientation="vertical">
             <!-- Scrollable content -->
 
         </androidx.recyclerview.widget.RecyclerView>

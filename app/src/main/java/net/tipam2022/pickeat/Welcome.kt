@@ -16,7 +16,7 @@ class Welcome: AppCompatActivity(){
         "Anytime and Anywhere",
         "Eating has never been so fun!")
 
-    private val images = arrayOf(R.drawable.wc2, R.drawable.wc3, R.drawable.wc4)
+    private val images = arrayOf(R.drawable.welcome, R.drawable.welcome, R.drawable.welcome)
     var i = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -31,7 +31,7 @@ class Welcome: AppCompatActivity(){
         val main = findViewById<ConstraintLayout>(R.id.main)
 
         skipBtn.setOnClickListener {
-            startActivity(Intent(applicationContext, Home::class.java))
+            startActivity(Intent(applicationContext, MainActivity::class.java))
         }
 
         nextButton.setOnClickListener {
@@ -41,7 +41,7 @@ class Welcome: AppCompatActivity(){
                 title.text = titles[i]
                 detail.text= details[i]
                 i++
-            } else{startActivity(Intent(applicationContext, Home::class.java))}
+            } else{startActivity(Intent(applicationContext, MainActivity::class.java))}
         }
     }
 }

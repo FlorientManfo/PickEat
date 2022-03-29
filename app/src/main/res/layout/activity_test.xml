@@ -19,7 +19,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:menu="@menu/simple_menu"
+            app:menu="@menu/top_menu_option"
             app:navigationIcon="@drawable/ic_baseline_keyboard_arrow_left_24"
             app:title="@string/title_category"
             app:titleTextColor="@color/white" />

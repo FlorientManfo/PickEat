@@ -17,7 +17,7 @@
 
         <androidx.appcompat.widget.AppCompatImageView
 
-            android:id="@+id/imagebouf"
+            android:id="@+id/publicationImage"
             android:layout_width="351dp"
             android:layout_height="249dp"
             android:background="@drawable/bro"
@@ -37,10 +37,10 @@
             android:textStyle="bold"
             app:layout_constraintEnd_toStartOf="@+id/category"
             app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="@+id/imagebouf"
-            app:layout_constraintTop_toBottomOf="@+id/imagebouf" />
+            app:layout_constraintStart_toStartOf="@+id/publicationImage"
+            app:layout_constraintTop_toBottomOf="@+id/publicationImage" />
 
-        <EditText
+        <TextView
             android:id="@+id/category"
             android:layout_width="wrap_content"
             android:layout_height="25dp"
@@ -55,7 +55,7 @@
             app:layout_constraintEnd_toStartOf="@+id/region"
             app:layout_constraintTop_toTopOf="@+id/meal" />
 
-        <EditText
+        <TextView
             android:id="@+id/region"
             android:layout_width="wrap_content"
             android:layout_height="25dp"
@@ -66,7 +66,7 @@
             android:textColor="@color/white"
             android:textSize="14sp"
             app:layout_constraintBottom_toBottomOf="@+id/category"
-            app:layout_constraintEnd_toEndOf="@+id/imagebouf"
+            app:layout_constraintEnd_toEndOf="@+id/publicationImage"
             app:layout_constraintTop_toTopOf="@+id/category"
             app:layout_constraintVertical_bias="0.0" />
 
