@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/black">
+
+    <EditText
+        android:id="@+id/editTextPrice"
+        android:layout_width="333dp"
+        android:layout_height="47dp"
+        android:layout_marginTop="28dp"
+        android:inputType="number"
+        android:background="@drawable/round_edit_text_white"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/categoriesSpiner" />
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/circleImageView4"
+        android:layout_width="174dp"
+        android:layout_height="166dp"
+
+        android:layout_marginTop="32dp"
+        android:background="@drawable/circle_shape"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageButton
+        android:id="@+id/imageButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/cameraicone"
+        app:layout_constraintBottom_toBottomOf="@+id/circleImageView4"
+        app:layout_constraintEnd_toEndOf="@+id/circleImageView4"
+        app:layout_constraintStart_toStartOf="@+id/circleImageView4"
+        app:layout_constraintTop_toTopOf="@+id/circleImageView4" />
+
+    <EditText
+        android:id="@+id/editTextMenu"
+        android:layout_width="329dp"
+        android:layout_height="45dp"
+        android:layout_marginTop="44dp"
+        android:background="@drawable/round_edit_text_white"
+        android:drawableLeft="@drawable/ic_baseline_set_meal_24"
+        android:ems="10"
+        android:hint=" Name"
+        android:inputType="textPersonName"
+        android:textAlignment="textStart"
+        android:textColor="@color/white"
+        android:textColorHint="@color/white"
+        android:textSize="25dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/circleImageView4" />
+
+    <Spinner
+        android:id="@+id/categoriesSpiner"
+        android:layout_width="333dp"
+        android:layout_height="47dp"
+
+        android:layout_marginTop="28dp"
+        android:background="@drawable/round_edit_text_white"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editTextMenu" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
