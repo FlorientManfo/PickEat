@@ -64,20 +64,21 @@ class Menu : Fragment() {
                               savedInstanceState: Bundle?): View? {
 
         binding = FragmentMenuBinding.inflate(inflater, container, false)
-        var navigationIcon = binding.topMenu.setNavigationOnClickListener {
+        var navigationIcon = binding.toolbar.setNavigationOnClickListener {
             var home = Home()
             loadFragment(home)
         }
 
-        val recycleView = binding.menuList
+        val recycleView: RecyclerView = binding.menuList
         recycleView.layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
         val mAdapter = MenuAdapter(menus)
         recycleView.adapter = mAdapter
         println(mAdapter.itemCount)
 
-        var searchView = binding.searchView
+        var searchView = binding.toolbar.menu.children.elementAt(0).actionView as androidx.appcompat.widget.SearchView
+        Toast.makeText(context, "${searchView.javaClass}", Toast.LENGTH_LONG*7).show()
         chipGroup = binding.chipGroup
-        var filter = binding.topMenu.menu.children.elementAt(0).setOnMenuItemClickListener { useFilter() }
+        var filter = binding.toolbar.menu.children.elementAt(1).setOnMenuItemClickListener { useFilter() }
 
         //Search for a menu using SearchView
         searchView.setOnQueryTextListener(
@@ -98,11 +99,9 @@ class Menu : Fragment() {
             }
         } )
 
-        chipGroup.children.forEach {  }
-
         if(this.arguments!=null)
         {
-            binding.topMenu.title = requireArguments().getString("title")
+            binding.toolbar.title = requireArguments().getString("title")
         }
         return binding.root
     }
