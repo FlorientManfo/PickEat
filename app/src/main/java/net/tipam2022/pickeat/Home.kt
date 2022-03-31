@@ -3,68 +3,74 @@ package net.tipam2022.pickeat
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
+import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
 import android.view.animation.Animation
 import android.view.animation.AnimationUtils
+import android.widget.Button
+import android.widget.EditText
 import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
+import androidx.appcompat.widget.SearchView
+import androidx.core.view.children
+import androidx.core.view.forEach
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import net.tipam2022.pickeat.adapters.CategoryAdapter
 import net.tipam2022.pickeat.adapters.CategoryAdapter2
+import net.tipam2022.pickeat.adapters.MenuAdapter
 import net.tipam2022.pickeat.databinding.FragmentHomeBinding
 import net.tipam2022.pickeat.entities.CategoryModel
+import net.tipam2022.pickeat.entities.MealModel
+import net.tipam2022.pickeat.entities.MenuModel
+import net.tipam2022.pickeat.entities.PublicationModel
+import java.io.LineNumberReader
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
 
-/**
- * A simple [Fragment] subclass.
- * Use the [Home.newInstance] factory method to
- * create an instance of this fragment.
- */
 class Home : Fragment() ,View.OnClickListener{
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
 
     lateinit var binding: FragmentHomeBinding
     private var categories = arrayListOf<CategoryModel>(
-        CategoryModel("Cameroonian", R.drawable.category1),
-        CategoryModel("Traditional Cameroonian", R.drawable.category1),
-        CategoryModel("Fast-Fod", R.drawable.category1),
-        CategoryModel("Chinese Meal", R.drawable.category1),
-        CategoryModel("European Meal", R.drawable.category1),
-        CategoryModel("English Meal", R.drawable.category1),
-        CategoryModel("African Meal", R.drawable.category1),
-        CategoryModel("Indian Meal", R.drawable.category1),
-        CategoryModel("Drink", R.drawable.category1),
-        CategoryModel("Other meal", R.drawable.category1)
+        CategoryModel("Cameroonian", R.drawable.category_1),
+        CategoryModel("Traditional Cameroonian", R.drawable.category_2),
+        CategoryModel("Fast-Fod", R.drawable.category_3),
+        CategoryModel("Asiatic Meal", R.drawable.category_4),
+        CategoryModel("European Meal", R.drawable.category_5),
+        CategoryModel("English Meal", R.drawable.category_6),
+        CategoryModel("Drink", R.drawable.category_7),
+        CategoryModel("Cake", R.drawable.category_8)
+    )
+
+
+    var publications = arrayListOf<PublicationModel>(
+        PublicationModel(MealModel("Traditional", "Eru", "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus tristique tellus a nibh pretium, in egestas quam ornare. Nullam ante lorem, fermentum non imperdiet ac, feugiat sollicitudin leo. Quisque elementum luctus erat, ac faucibus nisi finibus eget. Curabitur a interdum neque. Nam bibendum euismod nisl vel volutpat. Duis non nibh ut arcu congue congue ultricies eu nulla. Aenean dignissim enim eu sapien ullamcorper pharetra.", R.drawable.menu1), "Delicious Eru with Garry", R.drawable.menu1, 0.0, 2500.0),
+        PublicationModel(MealModel("Traditional", "Eru", "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus tristique tellus a nibh pretium, in egestas quam ornare. Nullam ante lorem, fermentum non imperdiet ac, feugiat sollicitudin leo. Quisque elementum luctus erat, ac faucibus nisi finibus eget. Curabitur a interdum neque. Nam bibendum euismod nisl vel volutpat. Duis non nibh ut arcu congue congue ultricies eu nulla. Aenean dignissim enim eu sapien ullamcorper pharetra.", R.drawable.menu1), "Delicious Eru with Garry", R.drawable.menu1, 0.0, 2500.0),
+        PublicationModel(MealModel("Traditional", "Eru", "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus tristique tellus a nibh pretium, in egestas quam ornare. Nullam ante lorem, fermentum non imperdiet ac, feugiat sollicitudin leo. Quisque elementum luctus erat, ac faucibus nisi finibus eget. Curabitur a interdum neque. Nam bibendum euismod nisl vel volutpat. Duis non nibh ut arcu congue congue ultricies eu nulla. Aenean dignissim enim eu sapien ullamcorper pharetra.", R.drawable.menu1), "Delicious Eru with Garry", R.drawable.menu1, 5.0, 2500.0)
+    )
+    var menus = arrayListOf<MenuModel>(
+        MenuModel("ERU", "test", "test", "test", R.drawable.menu1, publications)
+        , MenuModel("KOKI", "test", "test", "test", R.drawable.menu1, publications)
+        , MenuModel("Pommes", "test", "test", "test", R.drawable.pomme, publications)
+        , MenuModel("Taro", "test", "test", "test", R.drawable.taro, publications)
+        , MenuModel("Riz", "test", "test", "test", R.drawable.riz, publications)
     )
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
     }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
 
         binding = FragmentHomeBinding.inflate(inflater, container, false)
-
         binding.category.setOnClickListener(this)
-        //val controller = AnimationUtils.loadLayoutAnimation(requireContext(), R.anim.animation_scale)
-        //binding.categories.layoutAnimation = controller
-        //binding.categories.scheduleLayoutAnimation()
+        //Go to search page
+        var topmenu = binding.topMenu.menu
+        topmenu.children.elementAt(0).setOnMenuItemClickListener{ search() }
 
 
         var mLayoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
@@ -72,43 +78,50 @@ class Home : Fragment() ,View.OnClickListener{
         val mAdapter = CategoryAdapter2(categories){position ->  categoryClickListener(position)}
         binding.categories!!.adapter = mAdapter
         println(mAdapter.itemCount)
+        binding.recyclerView!!.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
+        binding.recyclerView.adapter = MenuAdapter(menus)
+
+        //Action on searching from home searchView
+
 
         return binding.root
     }
 
+    //Find with searchView
     override fun onClick(p0: View?) {
         when(p0){
             binding.category->{
                 var fragment = Category()
                 loadFragment(fragment)
             }
-            binding.homeSearch->{
-                var fragment = Category()
-                var arguments = Bundle()
-                arguments.putBoolean("isSearching", true)
-                fragment.arguments = arguments
-                loadFragment(fragment)
-            }
         }
     }
 
-    private fun categoryClickListener(position: Int){
+    //See all the categories
+    private fun categoryClickListener(position: Int) {
         var fragment = Menu()
         var selectedCategory = categories[position]
         var arguments = Bundle()
         arguments.putString("title", selectedCategory.title)
         fragment.arguments = arguments
         loadFragment(fragment)
-
-        //Toast.makeText(activity?.baseContext, categories[position].title, Toast.LENGTH_SHORT).show()
     }
 
+    //Switch to another fragment
     private fun loadFragment(fragment: Fragment) {
-        // load fragment
         var transaction = activity?.supportFragmentManager
         transaction?.beginTransaction()
         ?.replace(R.id.container, fragment)
-        ?.setCustomAnimations(R.anim.slide_in_left, R.anim.slide_in_right)
         ?.commit()
     }
+
+    private fun search(): Boolean {
+        var transaction = requireFragmentManager().beginTransaction()
+        var fragment = Menu()
+        fragment.arguments = arguments
+        loadFragment(fragment)
+        return true
+    }
+
+
 }

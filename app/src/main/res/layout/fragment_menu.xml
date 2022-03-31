@@ -8,48 +8,62 @@
 
     <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content">
 
         <com.google.android.material.appbar.AppBarLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
-            <com.google.android.material.appbar.MaterialToolbar
-                android:id="@+id/topAppBar"
+            <com.google.android.material.appbar.CollapsingToolbarLayout
                 android:layout_width="match_parent"
-                android:layout_height="?attr/actionBarSize"
-                app:title="List of : "
-                app:menu="@menu/top_menu_option"
-                app:titleTextColor="@color/white"
-                app:navigationIcon="@drawable/ic_baseline_keyboard_arrow_left_24"
-                style="@style/Widget.MaterialComponents.Toolbar.PrimarySurface"
-                />
+                android:layout_height="match_parent"
+                app:layout_scrollFlags="scroll|enterAlways"
+                app:title="Menu"
+                app:collapsedTitleTextColor="@color/white"
+                app:expandedTitleTextColor="@color/white">
 
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+               <LinearLayout
+                   android:id="@+id/header"
+                   android:orientation="vertical"
+                   android:layout_width="match_parent"
+                   android:layout_height="wrap_content">
+                   <com.google.android.material.appbar.MaterialToolbar
+                       android:id="@+id/topMenu"
+                       android:layout_width="match_parent"
+                       android:layout_height="wrap_content"
+                       app:navigationIcon="@drawable/ic_baseline_keyboard_arrow_left_24"
+                       app:menu="@menu/top_menu_option"/>
 
-                <ScrollView
-                    android:id="@+id/selectedChip"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-                </ScrollView>
+                   <androidx.appcompat.widget.SearchView
+                       android:id="@+id/searchView"
+                       android:layout_width="match_parent"
+                       android:layout_height="wrap_content"
+                       android:foregroundTint="@color/white"
+                       app:searchIcon="@drawable/ic_baseline_search_24"
+                       android:background="@drawable/round_edit_text"
+                       android:layout_marginRight="10dp"
+                       android:layout_marginLeft="10dp"
+                       android:paddingLeft="10dp"
+                       android:theme="@style/ThemeOverlay.SearchView"/>
 
-            </androidx.constraintlayout.widget.ConstraintLayout>
+                   <com.google.android.material.chip.ChipGroup
+                       android:id="@+id/chipGroup"
+                       android:layout_width="match_parent"
+                       android:layout_height="wrap_content"
+                       android:layout_marginRight="10dp"
+                       android:layout_marginLeft="10dp">
 
+                   </com.google.android.material.chip.ChipGroup>
+
+               </LinearLayout>
+            </com.google.android.material.appbar.CollapsingToolbarLayout>
         </com.google.android.material.appbar.AppBarLayout>
 
-        <!-- Note: A RecyclerView can also be used -->
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/menuList"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            app:layout_behavior="@string/appbar_scrolling_view_behavior"
-            tools:listitem="@layout/menu_card"
-            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-            android:orientation="vertical">
-            <!-- Scrollable content -->
+            android:layout_height="wrap_content"
+            tools:listitem="@layout/menu_card"/>
 
-        </androidx.recyclerview.widget.RecyclerView>
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
 </FrameLayout>

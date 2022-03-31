@@ -22,19 +22,13 @@
             android:padding="5dp">
 
             <androidx.appcompat.widget.Toolbar
+                android:id="@+id/top_menu"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@color/red"
                 app:title="@string/title_home"
-                app:titleTextColor="@color/white" />
-
-            <androidx.appcompat.widget.SearchView
-                android:id="@+id/homeSearch"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@drawable/round_edit_text_white"
-                android:foregroundTint="@color/white"
-                app:searchIcon="@drawable/ic_baseline_search_24" />
+                app:titleTextColor="@color/white"
+                app:menu="@menu/top_search"/>
 
         </com.google.android.material.appbar.AppBarLayout>
 

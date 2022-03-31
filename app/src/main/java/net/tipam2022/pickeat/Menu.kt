@@ -5,10 +5,16 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
-import android.widget.EditText
+import android.widget.*
 import androidx.appcompat.app.AlertDialog
+import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.core.view.children
+import androidx.core.view.forEach
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.chip.Chip
+import com.google.android.material.chip.ChipGroup
+import com.google.protobuf.LazyStringArrayList
 import net.tipam2022.pickeat.adapters.MenuAdapter
 import net.tipam2022.pickeat.databinding.FragmentMenuBinding
 import net.tipam2022.pickeat.entities.MealModel
@@ -26,95 +32,164 @@ private const val ARG_PARAM2 = "param2"
  * create an instance of this fragment.
  */
 class Menu : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
-    }
-
-
+    lateinit var chipGroup: ChipGroup
+    var chipNumber = 0
+    lateinit var searchView: SearchView
+    lateinit var recycleView: RecyclerView
+    lateinit var adapter: MenuAdapter
     lateinit var binding: FragmentMenuBinding
-
+    var filterOptions = LazyStringArrayList()
     var publications = arrayListOf<PublicationModel>(
         PublicationModel(MealModel("Traditional", "Eru", "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus tristique tellus a nibh pretium, in egestas quam ornare. Nullam ante lorem, fermentum non imperdiet ac, feugiat sollicitudin leo. Quisque elementum luctus erat, ac faucibus nisi finibus eget. Curabitur a interdum neque. Nam bibendum euismod nisl vel volutpat. Duis non nibh ut arcu congue congue ultricies eu nulla. Aenean dignissim enim eu sapien ullamcorper pharetra.", R.drawable.menu1), "Delicious Eru with Garry", R.drawable.menu1, 0.0, 2500.0),
         PublicationModel(MealModel("Traditional", "Eru", "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus tristique tellus a nibh pretium, in egestas quam ornare. Nullam ante lorem, fermentum non imperdiet ac, feugiat sollicitudin leo. Quisque elementum luctus erat, ac faucibus nisi finibus eget. Curabitur a interdum neque. Nam bibendum euismod nisl vel volutpat. Duis non nibh ut arcu congue congue ultricies eu nulla. Aenean dignissim enim eu sapien ullamcorper pharetra.", R.drawable.menu1), "Delicious Eru with Garry", R.drawable.menu1, 0.0, 2500.0),
         PublicationModel(MealModel("Traditional", "Eru", "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus tristique tellus a nibh pretium, in egestas quam ornare. Nullam ante lorem, fermentum non imperdiet ac, feugiat sollicitudin leo. Quisque elementum luctus erat, ac faucibus nisi finibus eget. Curabitur a interdum neque. Nam bibendum euismod nisl vel volutpat. Duis non nibh ut arcu congue congue ultricies eu nulla. Aenean dignissim enim eu sapien ullamcorper pharetra.", R.drawable.menu1), "Delicious Eru with Garry", R.drawable.menu1, 5.0, 2500.0)
     )
-
     var menus = arrayListOf<MenuModel>(
-        MenuModel("test", "test", "test", "test", R.drawable.menu1, publications)
-        , MenuModel("test", "test", "test", "test", R.drawable.menu1, publications)
+        MenuModel("ERU", "test", "test", "test", R.drawable.menu1, publications)
+        , MenuModel("KOKI", "test", "test", "test", R.drawable.menu1, publications)
+        , MenuModel("Pommes", "test", "test", "test", R.drawable.pomme, publications)
+        , MenuModel("Taro", "test", "test", "test", R.drawable.taro, publications)
+        , MenuModel("Riz", "test", "test", "test", R.drawable.riz, publications)
     )
+    var selectedMenu: List<MenuModel>? = null
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+    }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
-        // Inflate the layout for this fragment
-        // Inflate the layout for this fragment
+
         binding = FragmentMenuBinding.inflate(inflater, container, false)
+        var navigationIcon = binding.topMenu.setNavigationOnClickListener {
+            var home = Home()
+            loadFragment(home)
+        }
 
         val recycleView = binding.menuList
+        recycleView.layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
         val mAdapter = MenuAdapter(menus)
         recycleView.adapter = mAdapter
         println(mAdapter.itemCount)
 
-        /*var filter = binding.topAppBar.setOnMenuItemClickListener {
-            when(it.itemId)
-            {
-                val mDialogBox = LayoutInflater.from(this).inflate(R.layout.activity_filterpopup, null)
-                val mBuilder = AlertDialog.Builder(this)
-                mBuilder.setView(mDialogBox)
+        var searchView = binding.searchView
+        chipGroup = binding.chipGroup
+        var filter = binding.topMenu.menu.children.elementAt(0).setOnMenuItemClickListener { useFilter() }
 
-                val mAlertDialog = mBuilder.show()
-
-                mDialogBox.findViewById<Button>(R.id.submit).setOnClickListener {
-                    val ville1 = mDialogBox.findViewById<Chip>(R.id.ville2)
-
-                    val region1 = mDialogBox.findViewById<Chip>(R.id.region2)
-                    val region2 = mDialogBox.findViewById<Chip>(R.id.region3)
-                    val region3 = mDialogBox.findViewById<Chip>(R.id.region4)
-                    val region4 = mDialogBox.findViewById<Chip>(R.id.region5)
-                    val region5 = mDialogBox.findViewById<Chip>(R.id.region6)
-                    val region6 = mDialogBox.findViewById<Chip>(R.id.region7)
-                    val region7 = mDialogBox.findViewById<Chip>(R.id.region8)
-
-                    val list = arrayListOf<String>()
-                    val montant = mDialogBox.findViewById<EditText>(R.id.editText)
-
-
-
-
-                }
-
-                mDialogBox.findViewById<Button>(R.id.cancel).setOnClickListener {
-                    mAlertDialog.dismiss()
-                }
+        //Search for a menu using SearchView
+        searchView.setOnQueryTextListener(
+            object: androidx.appcompat.widget.SearchView.OnQueryTextListener {
+            override fun onQueryTextSubmit(query: String?): Boolean {
+                return false
             }
-        }*/
+
+            override fun onQueryTextChange(newText: String?): Boolean {
+                selectedMenu = menus.filter { it.title.toLowerCase().contains(newText!!.toLowerCase()) }
+                if(!selectedMenu.isNullOrEmpty())
+                {
+                    adapter = MenuAdapter(selectedMenu!! as ArrayList<MenuModel>)
+                    recycleView.adapter = adapter
+                    recycleView.refreshDrawableState()
+                }
+                return false
+            }
+        } )
+
+        chipGroup.children.forEach {  }
+
+        if(this.arguments!=null)
+        {
+            binding.topMenu.title = requireArguments().getString("title")
+        }
         return binding.root
     }
 
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment Menu2.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic fun newInstance(param1: String, param2: String) =
-                Menu().apply {
-                    arguments = Bundle().apply {
-                        putString(ARG_PARAM1, param1)
-                        putString(ARG_PARAM2, param2)
-                    }
-                }
+    //Load another fragment inside the main activity
+    private fun loadFragment(fragment: Fragment) {
+        // load fragment
+        var transaction = activity?.supportFragmentManager
+        transaction?.beginTransaction()
+            ?.replace(R.id.container, fragment)
+            ?.setCustomAnimations(R.anim.slide_in_left, R.anim.slide_in_right)
+            ?.commit()
+    }
+
+    //Add chip when apply filter
+    private fun addCriteria(text: String): Boolean{
+        chipNumber++
+        var chipChild: Chip = Chip(context)
+        chipChild.text = text;
+        chipChild.isCloseIconVisible = true
+        chipChild.setOnClickListener{
+            chipGroup.removeView(chipChild)
+        }
+        if(chipGroup.childCount <=4 ){
+            chipGroup.addView(chipChild)
+        }
+        else{
+            chipChild = chipGroup.children.elementAt(4) as Chip
+            chipChild.text = "+ ${chipNumber}"
+            chipGroup.removeViewAt(4)
+            chipGroup.addView(chipChild)
+        }
+        return true
+    }
+
+    private fun useFilter(): Boolean {
+        val mDialogView = LayoutInflater.from(context).inflate(R.layout.fragment_filter, null)
+        val mBuilder = AlertDialog.Builder(requireContext())
+        mBuilder.setView(mDialogView)
+        mBuilder.setTitle("Filter options")
+
+        val mAlertDialog = mBuilder.show()
+
+        mDialogView.findViewById<Button>(R.id.apply).setOnClickListener {
+
+
+            var countriesCities = mDialogView.findViewById<ConstraintLayout>(R.id.countries_cities)
+            var cities = countriesCities.findViewById<ConstraintLayout>(R.id.cities)
+            var countries = countriesCities.findViewById<ConstraintLayout>(R.id.countries)
+            var flavors = mDialogView.findViewById<ConstraintLayout>(R.id.flavors)
+            var nutrients = mDialogView.findViewById<ConstraintLayout>(R.id.nutrients)
+
+            //Toast.makeText(context, "${flavors?.childCount}", Toast.LENGTH_SHORT).show()
+
+            flavors.children.forEach { controlCheckBox(it) }
+            nutrients.children.forEach { controlCheckBox(it) }
+            countries.children.forEach { controlCheckBox(it) }
+            cities.children.forEach { controlRadioGroup(it) }
+
+            Toast.makeText(context, "${filterOptions.count()}", Toast.LENGTH_SHORT).show()
+
+            for(i in 0..filterOptions.size-1){
+                addCriteria(filterOptions[i])
+            }
+            mAlertDialog.dismiss()
+        }
+
+        mDialogView.findViewById<Button>(R.id.cancel).setOnClickListener {
+            mAlertDialog.dismiss()
+        }
+
+        return true
+    }
+
+    private fun controlCheckBox(view: View){
+        if(view is CheckBox){
+            var checkBox = view as CheckBox
+            if(checkBox.isChecked)
+                filterOptions.add(checkBox.tag.toString())
+        }
+    }
+
+    private fun controlRadioGroup(view: View){
+        if(view is RadioGroup){
+            var radioGroup = view as RadioGroup
+            radioGroup.forEach {
+                if((it as RadioButton).isChecked)
+                    filterOptions.add(it.tag.toString())
+            }
+        }
     }
 }

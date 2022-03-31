@@ -67,9 +67,9 @@ class MainActivity : AppCompatActivity() {
 
         }
 
-        binding.category.setOnClickListener{
+        /*binding.category.setOnClickListener{
             loadFragment(Menu())
-        }
+        }*/
     }
 
     private fun loadFragment(fragment: Fragment) {

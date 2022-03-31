@@ -39,16 +39,14 @@ class Category : Fragment() {
     }
 
     private var categories = arrayListOf<CategoryModel>(
-        CategoryModel("Cameroonian", R.drawable.category1),
-        CategoryModel("Traditional Cameroonian", R.drawable.category1),
-        CategoryModel("Fast-Fod", R.drawable.category1),
-        CategoryModel("Chinese Meal", R.drawable.category1),
-        CategoryModel("European Meal", R.drawable.category1),
-        CategoryModel("English Meal", R.drawable.category1),
-        CategoryModel("African Meal", R.drawable.category1),
-        CategoryModel("Indian Meal", R.drawable.category1),
-        CategoryModel("Drink", R.drawable.category1),
-        CategoryModel("Other meal", R.drawable.category1)
+        CategoryModel("Cameroonian", R.drawable.category_1),
+        CategoryModel("Traditional Cameroonian", R.drawable.category_2),
+        CategoryModel("Fast-Fod", R.drawable.category_3),
+        CategoryModel("Asiatic Meal", R.drawable.category_4),
+        CategoryModel("European Meal", R.drawable.category_5),
+        CategoryModel("English Meal", R.drawable.category_6),
+        CategoryModel("Drink", R.drawable.category_7),
+        CategoryModel("Cake", R.drawable.category_8)
     )
     lateinit var binding: FragmentCategoryBinding
     override fun onCreateView(
@@ -91,6 +89,7 @@ class Category : Fragment() {
         transaction?.beginTransaction()
             ?.replace(R.id.container, fragment)
             ?.setCustomAnimations(R.anim.slide_in_left, R.anim.slide_in_right)
+            ?.addToBackStack("menu")
             ?.commit()
     }
 }
