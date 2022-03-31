@@ -1,33 +1,41 @@
 {
   "project_info": {
-    "project_number": "810247728323",
-    "project_id": "pickeat-8d10d",
-    "storage_bucket": "pickeat-8d10d.appspot.com"
+    "project_number": "655997777491",
+    "project_id": "pickeat-70a91",
+    "storage_bucket": "pickeat-70a91.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:810247728323:android:d57879b85e626ea7ac4676",
+        "mobilesdk_app_id": "1:655997777491:android:b8c2912f043230bfcbb8a6",
         "android_client_info": {
           "package_name": "net.tipam2022.pickeat"
         }
       },
       "oauth_client": [
         {
-          "client_id": "810247728323-0dmqcvn8kog1qmnd1hrm440iot6ijo2d.apps.googleusercontent.com",
+          "client_id": "655997777491-l5j6in3a4nd1644smk8mjds700o9gaoq.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "net.tipam2022.pickeat",
+            "certificate_hash": "ceaf8b57ffad7c3ae46336b4e8de449d2c14a5e4"
+          }
+        },
+        {
+          "client_id": "655997777491-sfgooebd0h5qals3qujppoj0gsuuprdg.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyD-Z9oxoNGsgW512bfhhN5CfD5ndk3xC0k"
+          "current_key": "AIzaSyAHjV7Zhgv3tiotBO_Fl5mAzNZ_Rtu-p4Y"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "810247728323-0dmqcvn8kog1qmnd1hrm440iot6ijo2d.apps.googleusercontent.com",
+              "client_id": "655997777491-sfgooebd0h5qals3qujppoj0gsuuprdg.apps.googleusercontent.com",
               "client_type": 3
             }
           ]
