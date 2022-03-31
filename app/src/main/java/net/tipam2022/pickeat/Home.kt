@@ -50,8 +50,9 @@ class Home : Fragment() ,View.OnClickListener{
         PublicationModel(MealModel("Traditional", "Eru", "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus tristique tellus a nibh pretium, in egestas quam ornare. Nullam ante lorem, fermentum non imperdiet ac, feugiat sollicitudin leo. Quisque elementum luctus erat, ac faucibus nisi finibus eget. Curabitur a interdum neque. Nam bibendum euismod nisl vel volutpat. Duis non nibh ut arcu congue congue ultricies eu nulla. Aenean dignissim enim eu sapien ullamcorper pharetra.", R.drawable.menu1), "Delicious Eru with Garry", R.drawable.menu1, 5.0, 2500.0)
     )
     var menus = arrayListOf<MenuModel>(
-        MenuModel("ERU", "test", "test", "test", R.drawable.menu1, publications)
-        , MenuModel("KOKI", "test", "test", "test", R.drawable.menu1, publications)
+        MenuModel("ERU", "Traditionnal", "Sud West", "Le plat ci va te depassé lobstacle va te taclé", R.drawable.img, publications)
+        , MenuModel("KOKI", "Traditionnal", "West", "le koki est bon quand ca chaufe",
+            R.drawable.pommes_pilees, publications)
         , MenuModel("Pommes", "test", "test", "test", R.drawable.pomme, publications)
         , MenuModel("Taro", "test", "test", "test", R.drawable.taro, publications)
         , MenuModel("Riz", "test", "test", "test", R.drawable.riz, publications)

@@ -46,9 +46,11 @@ class Menu : Fragment() {
         PublicationModel(MealModel("Traditional", "Eru", "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus tristique tellus a nibh pretium, in egestas quam ornare. Nullam ante lorem, fermentum non imperdiet ac, feugiat sollicitudin leo. Quisque elementum luctus erat, ac faucibus nisi finibus eget. Curabitur a interdum neque. Nam bibendum euismod nisl vel volutpat. Duis non nibh ut arcu congue congue ultricies eu nulla. Aenean dignissim enim eu sapien ullamcorper pharetra.", R.drawable.menu1), "Delicious Eru with Garry", R.drawable.menu1, 5.0, 2500.0)
     )
     var menus = arrayListOf<MenuModel>(
-        MenuModel("ERU", "test", "test", "test", R.drawable.menu1, publications)
-        , MenuModel("KOKI", "test", "test", "test", R.drawable.menu1, publications)
-        , MenuModel("Pommes", "test", "test", "test", R.drawable.pomme, publications)
+        MenuModel("ERU", "Traditionnal", "West", "Delicieux plat de eru tres armees aucune resistance ",
+            R.drawable.category1, publications)
+        , MenuModel("KOKI", "Traditionnal", "West", "le KOKI est bon quand ca chaufe",
+            R.drawable.bro, publications)
+        , MenuModel("Pommes", "Traditionnal", "Littoral", "la douceur des pommes du littoral dans un bouillions de viande sauté", R.drawable.pomme, publications)
         , MenuModel("Taro", "test", "test", "test", R.drawable.taro, publications)
         , MenuModel("Riz", "test", "test", "test", R.drawable.riz, publications)
     )
