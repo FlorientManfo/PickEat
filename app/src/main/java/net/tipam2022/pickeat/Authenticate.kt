@@ -1,7 +1,11 @@
 package net.tipam2022.pickeat
 
+import android.content.ContentResolver
+import android.content.Context
 import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
+import android.webkit.MimeTypeMap
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
@@ -10,10 +14,22 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException
 import com.google.firebase.auth.PhoneAuthCredential
 import com.google.firebase.auth.PhoneAuthProvider
+import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.storage.FirebaseStorage
+import com.google.firebase.storage.StorageReference
 import net.tipam2022.pickeat.databinding.ActivityAuthenticateBinding
 import net.tipam2022.pickeat.databinding.ActivityLoginBinding
+import net.tipam2022.pickeat.upload.UploadUser
+import java.io.File
+import java.io.FileInputStream
+import java.io.FileWriter
 
 class Authenticate: AppCompatActivity() {
+
+    private lateinit var mStorageRef: StorageReference
+    private lateinit var mODatabaseRef: DatabaseReference
+
     lateinit var binding: ActivityAuthenticateBinding
     override fun onCreate(savedInstanceState: Bundle?){
         super.onCreate(savedInstanceState)
@@ -22,10 +38,15 @@ class Authenticate: AppCompatActivity() {
         setContentView(view)
 
         auth = FirebaseAuth.getInstance()
+        mStorageRef = FirebaseStorage.getInstance().getReference("users")
+        mODatabaseRef = FirebaseDatabase.getInstance().getReference("users")
 
         val storedVerificationId = intent.getStringExtra("storedVerificationId")
         val verify = binding.confirmBtn
         val otpGiven = binding.otp
+
+        //Save the current phone number for futures usages
+        val file = File("phone")
 
         verify.setOnClickListener{
             val otp = otpGiven.text.toString().trim()
@@ -45,6 +66,9 @@ class Authenticate: AppCompatActivity() {
             .addOnCompleteListener(this) { task ->
                 if (task.isSuccessful) {
                     startActivity(Intent(applicationContext, Welcome::class.java))
+
+                    uploadUser()
+
                     finish()
                     println("ok")
                 } else {
@@ -54,5 +78,19 @@ class Authenticate: AppCompatActivity() {
                     }
                 }
             }
+
+
     }
+
+    private fun getExtension(uri: Uri): String? {
+        var cr: ContentResolver = contentResolver
+        var mime: MimeTypeMap = MimeTypeMap.getSingleton()
+        return mime.getExtensionFromMimeType(cr.getType(uri))
+    }
+    private fun uploadUser(){
+        var user = UploadUser(currentPhone)
+        mODatabaseRef.child(currentPhone).setValue(user)
+        Toast.makeText(this, "User saved", Toast.LENGTH_LONG*5 )
+    }
+
 }

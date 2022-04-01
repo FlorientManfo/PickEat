@@ -2,6 +2,6 @@ package net.tipam2022.pickeat.entities
 
 import java.util.*
 
-class UserModel(phone: String, registeredDate: Date, name: String
-, profile: ByteArray, address: AddressModel) {
+data class UserModel(val phone: String, val registeredDate: Date, val name: String
+, val profile: ByteArray, val address: AddressModel, val photo: Int) {
 }

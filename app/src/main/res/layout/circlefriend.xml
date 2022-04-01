@@ -2,15 +2,15 @@
 <com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="117dp"
         android:layout_height="114dp">
 
         <de.hdodenhof.circleimageview.CircleImageView
-            android:id="@+id/circleImageView3"
+            android:id="@+id/profile"
             android:layout_width="match_parent"
             android:layout_height="80dp"
             android:src="@drawable/v3"
@@ -19,6 +19,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
+            android:id="@+id/profile_name"
             android:layout_width="117dp"
             android:layout_height="24dp"
             android:layout_marginTop="3dp"

@@ -14,6 +14,9 @@ import net.tipam2022.pickeat.adapters.PublicationAdapter
 import net.tipam2022.pickeat.databinding.FragmentAccountBinding
 import net.tipam2022.pickeat.entities.MealModel
 import net.tipam2022.pickeat.entities.PublicationModel
+import java.io.File
+import java.io.FileReader
+import java.util.*
 
 
 // TODO: Rename parameter arguments, choose names that match
@@ -60,6 +63,7 @@ class Account : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         binding = FragmentAccountBinding.inflate(inflater, container, false)
+
 
         val recycleView = binding.publicationList
         var mLayoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
@@ -109,7 +113,7 @@ class Account : Fragment() {
                     auth.signOut()
                     startActivity(Intent(activity, Login::class.java))
                 }
-                Toast.makeText(activity, "${auth.currentUser}", Toast.LENGTH_SHORT).show()
+                Toast.makeText(activity, "${currentPhone}", Toast.LENGTH_SHORT).show()
                 println("Logout!")
                 true
             }
@@ -122,4 +126,7 @@ class Account : Fragment() {
             else -> false
         }
     }
+
+    fun readFileDirectlyAsText(fileName: String): String
+            = File(fileName).readText(Charsets.UTF_8)
 }

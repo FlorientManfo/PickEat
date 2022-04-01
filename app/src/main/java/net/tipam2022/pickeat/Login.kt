@@ -72,6 +72,7 @@ class Login : AppCompatActivity() {
         val mobileNumber = binding.phoneNumber
         var number = mobileNumber.text.toString().trim()
         println("$number")
+        currentPhone = number
         if(!number.matches(pattern)){
 
             Toast.makeText(this, "Invalid phone number", Toast.LENGTH_LONG*2).show()

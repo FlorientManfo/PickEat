@@ -3,30 +3,16 @@ package net.tipam2022.pickeat
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
-import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
-import android.view.animation.Animation
-import android.view.animation.AnimationUtils
-import android.widget.Button
-import android.widget.EditText
-import android.widget.Toast
-import androidx.appcompat.app.AlertDialog
-import androidx.appcompat.widget.SearchView
 import androidx.core.view.children
-import androidx.core.view.forEach
-import androidx.navigation.fragment.findNavController
-import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
-import net.tipam2022.pickeat.adapters.CategoryAdapter
 import net.tipam2022.pickeat.adapters.CategoryAdapter2
 import net.tipam2022.pickeat.adapters.MenuAdapter
+import net.tipam2022.pickeat.adapters.UserAdapter
 import net.tipam2022.pickeat.databinding.FragmentHomeBinding
-import net.tipam2022.pickeat.entities.CategoryModel
-import net.tipam2022.pickeat.entities.MealModel
-import net.tipam2022.pickeat.entities.MenuModel
-import net.tipam2022.pickeat.entities.PublicationModel
-import java.io.LineNumberReader
+import net.tipam2022.pickeat.entities.*
+import java.util.*
 
 
 class Home : Fragment() ,View.OnClickListener{
@@ -42,8 +28,6 @@ class Home : Fragment() ,View.OnClickListener{
         CategoryModel("Drink", R.drawable.category_7),
         CategoryModel("Cake", R.drawable.category_8)
     )
-
-
     var publications = arrayListOf<PublicationModel>(
         PublicationModel(MealModel("Traditional", "Eru", "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus tristique tellus a nibh pretium, in egestas quam ornare. Nullam ante lorem, fermentum non imperdiet ac, feugiat sollicitudin leo. Quisque elementum luctus erat, ac faucibus nisi finibus eget. Curabitur a interdum neque. Nam bibendum euismod nisl vel volutpat. Duis non nibh ut arcu congue congue ultricies eu nulla. Aenean dignissim enim eu sapien ullamcorper pharetra.", R.drawable.menu1), "Delicious Eru with Garry", R.drawable.menu1, 0.0, 2500.0),
         PublicationModel(MealModel("Traditional", "Eru", "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus tristique tellus a nibh pretium, in egestas quam ornare. Nullam ante lorem, fermentum non imperdiet ac, feugiat sollicitudin leo. Quisque elementum luctus erat, ac faucibus nisi finibus eget. Curabitur a interdum neque. Nam bibendum euismod nisl vel volutpat. Duis non nibh ut arcu congue congue ultricies eu nulla. Aenean dignissim enim eu sapien ullamcorper pharetra.", R.drawable.menu1), "Delicious Eru with Garry", R.drawable.menu1, 0.0, 2500.0),
@@ -57,6 +41,17 @@ class Home : Fragment() ,View.OnClickListener{
         , MenuModel("Taro", "test", "test", "test", R.drawable.taro, publications)
         , MenuModel("Riz", "test", "test", "test", R.drawable.riz, publications)
     )
+
+    var address = AddressModel("Douala", "Logbessou")
+    var friends = arrayListOf<UserModel>(
+        UserModel("677777777", Date(), "Test", ByteArray(2), address, R.drawable.category_7),
+        UserModel("677777777", Date(), "Test", ByteArray(2), address, R.drawable.category_3),
+        UserModel("677777777", Date(), "Test", ByteArray(2), address, R.drawable.category_1),
+        UserModel("677777777", Date(), "Test", ByteArray(2), address, R.drawable.category_7),
+        UserModel("677777777", Date(), "Test", ByteArray(2), address, R.drawable.category_3),
+        UserModel("677777777", Date(), "Test", ByteArray(2), address, R.drawable.category_1),
+        UserModel("677777777", Date(), "Test", ByteArray(2), address, R.drawable.category_7),
+    );
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -81,6 +76,9 @@ class Home : Fragment() ,View.OnClickListener{
         println(mAdapter.itemCount)
         binding.recyclerView!!.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
         binding.recyclerView.adapter = MenuAdapter(menus)
+
+        var friendsAdapter = UserAdapter(friends)
+        binding.friends.adapter = friendsAdapter
 
         //Action on searching from home searchView
 
