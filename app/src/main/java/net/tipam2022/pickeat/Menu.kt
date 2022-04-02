@@ -1,11 +1,13 @@
 package net.tipam2022.pickeat
 
+import android.os.Build
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.*
+import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AlertDialog
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.view.children
@@ -39,7 +41,7 @@ class Menu : Fragment() {
     lateinit var recycleView: RecyclerView
     lateinit var adapter: MenuAdapter
     lateinit var binding: FragmentMenuBinding
-    var filterOptions = LazyStringArrayList()
+    var filterOptions = ArrayList<String>()
     var publications = arrayListOf<PublicationModel>(
         PublicationModel(MealModel("Traditional", "Eru", "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus tristique tellus a nibh pretium, in egestas quam ornare. Nullam ante lorem, fermentum non imperdiet ac, feugiat sollicitudin leo. Quisque elementum luctus erat, ac faucibus nisi finibus eget. Curabitur a interdum neque. Nam bibendum euismod nisl vel volutpat. Duis non nibh ut arcu congue congue ultricies eu nulla. Aenean dignissim enim eu sapien ullamcorper pharetra.", R.drawable.menu1), "Delicious Eru with Garry", R.drawable.menu1, 0.0, 2500.0),
         PublicationModel(MealModel("Traditional", "Eru", "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus tristique tellus a nibh pretium, in egestas quam ornare. Nullam ante lorem, fermentum non imperdiet ac, feugiat sollicitudin leo. Quisque elementum luctus erat, ac faucibus nisi finibus eget. Curabitur a interdum neque. Nam bibendum euismod nisl vel volutpat. Duis non nibh ut arcu congue congue ultricies eu nulla. Aenean dignissim enim eu sapien ullamcorper pharetra.", R.drawable.menu1), "Delicious Eru with Garry", R.drawable.menu1, 0.0, 2500.0),
@@ -60,6 +62,7 @@ class Menu : Fragment() {
         super.onCreate(savedInstanceState)
     }
 
+    @RequiresApi(Build.VERSION_CODES.N)
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
 
@@ -78,7 +81,10 @@ class Menu : Fragment() {
         var searchView = binding.toolbar.menu.children.elementAt(0).actionView as androidx.appcompat.widget.SearchView
         Toast.makeText(context, "${searchView.javaClass}", Toast.LENGTH_LONG*7).show()
         chipGroup = binding.chipGroup
-        var filter = binding.toolbar.menu.children.elementAt(1).setOnMenuItemClickListener { useFilter() }
+        var filter = binding.toolbar.menu.children.elementAt(1).setOnMenuItemClickListener {
+            chipNumber = 0
+            filterOptions = ArrayList()
+            useFilter() }
 
         //Search for a menu using SearchView
         searchView.setOnQueryTextListener(
@@ -123,7 +129,8 @@ class Menu : Fragment() {
         chipChild.text = text;
         chipChild.isCloseIconVisible = true
         chipChild.setOnClickListener{
-            chipGroup.removeView(chipChild)
+            chipGroup.removeView(it)
+            filterOptions.remove(chipChild.text)
         }
         if(chipGroup.childCount <=4 ){
             chipGroup.addView(chipChild)
@@ -137,6 +144,7 @@ class Menu : Fragment() {
         return true
     }
 
+    @RequiresApi(Build.VERSION_CODES.N)
     private fun useFilter(): Boolean {
         val mDialogView = LayoutInflater.from(context).inflate(R.layout.fragment_filter, null)
         val mBuilder = AlertDialog.Builder(requireContext())
@@ -144,7 +152,6 @@ class Menu : Fragment() {
         mBuilder.setTitle("Filter options")
 
         val mAlertDialog = mBuilder.show()
-
         mDialogView.findViewById<Button>(R.id.apply).setOnClickListener {
 
 

@@ -37,6 +37,7 @@
         <entry key="..\:/Test/app/src/main/res/layout/card_home.xml" value="0.20364583333333333" />
         <entry key="..\:/Test/app/src/main/res/layout/cicle_shape.xml" value="0.20364583333333333" />
         <entry key="..\:/Test/app/src/main/res/layout/circlefriend.xml" value="0.25" />
+        <entry key="..\:/Test/app/src/main/res/layout/cities.xml" value="0.1852355072463768" />
         <entry key="..\:/Test/app/src/main/res/layout/city.xml" value="0.25" />
         <entry key="..\:/Test/app/src/main/res/layout/concerned_user.xml" value="0.4166666666666667" />
         <entry key="..\:/Test/app/src/main/res/layout/countries.xml" value="0.33" />
@@ -49,9 +50,10 @@
         <entry key="..\:/Test/app/src/main/res/layout/fragment_category_list.xml" value="0.33" />
         <entry key="..\:/Test/app/src/main/res/layout/fragment_category_list2.xml" value="0.25" />
         <entry key="..\:/Test/app/src/main/res/layout/fragment_category_list_list.xml" value="0.33" />
+        <entry key="..\:/Test/app/src/main/res/layout/fragment_edit_profile.xml" value="0.20833333333333334" />
         <entry key="..\:/Test/app/src/main/res/layout/fragment_favorite.xml" value="0.1" />
         <entry key="..\:/Test/app/src/main/res/layout/fragment_favourites.xml" value="0.20833333333333334" />
-        <entry key="..\:/Test/app/src/main/res/layout/fragment_filter.xml" value="0.2112676056338028" />
+        <entry key="..\:/Test/app/src/main/res/layout/fragment_filter.xml" value="0.33" />
         <entry key="..\:/Test/app/src/main/res/layout/fragment_home.xml" value="0.16853932584269662" />
         <entry key="..\:/Test/app/src/main/res/layout/fragment_menu.xml" value="0.18630647414997673" />
         <entry key="..\:/Test/app/src/main/res/layout/fragment_menu_publication.xml" value="0.20833333333333334" />
@@ -62,6 +64,7 @@
         <entry key="..\:/Test/app/src/main/res/layout/fragment_scrolling.xml" value="0.1" />
         <entry key="..\:/Test/app/src/main/res/layout/fragment_search_menu.xml" value="0.25" />
         <entry key="..\:/Test/app/src/main/res/layout/layout.xml" value="0.19429347826086957" />
+        <entry key="..\:/Test/app/src/main/res/layout/layout_edit.xml" value="0.22" />
         <entry key="..\:/Test/app/src/main/res/layout/layout_user.xml" value="0.20833333333333334" />
         <entry key="..\:/Test/app/src/main/res/layout/menu_card.xml" value="0.48721227621483376" />
         <entry key="..\:/Test/app/src/main/res/layout/menu_profile.xml" value="0.19270833333333334" />
@@ -81,13 +84,16 @@
         <entry key="..\:/Test/app/src/main/res/menu/filter_menu.xml" value="0.20833333333333334" />
         <entry key="..\:/Test/app/src/main/res/menu/header.xml" value="0.1" />
         <entry key="..\:/Test/app/src/main/res/menu/menu_option_menu.xml" value="0.33" />
+        <entry key="..\:/Test/app/src/main/res/menu/menu_photo.xml" value="0.1" />
         <entry key="..\:/Test/app/src/main/res/menu/menu_profile.xml" value="0.19270833333333334" />
         <entry key="..\:/Test/app/src/main/res/menu/menu_topbar.xml" value="0.20364583333333333" />
-        <entry key="..\:/Test/app/src/main/res/menu/profile_option_menu.xml" value="0.20833333333333334" />
+        <entry key="..\:/Test/app/src/main/res/menu/popup_photo_menu.xml" value="0.20833333333333334" />
+        <entry key="..\:/Test/app/src/main/res/menu/profile_option_menu.xml" value="0.1" />
         <entry key="..\:/Test/app/src/main/res/menu/simple_menu.xml" value="0.20833333333333334" />
         <entry key="..\:/Test/app/src/main/res/menu/top_bar.xml" value="0.20833333333333334" />
         <entry key="..\:/Test/app/src/main/res/menu/top_menu_option.xml" value="0.20833333333333334" />
         <entry key="..\:/Test/app/src/main/res/menu/top_search.xml" value="0.20833333333333334" />
+        <entry key="..\:/Test/app/src/main/res/xml/root_preferences.xml" value="0.20833333333333334" />
       </map>
     </option>
   </component>

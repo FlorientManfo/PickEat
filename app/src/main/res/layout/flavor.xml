@@ -72,7 +72,7 @@
         android:id="@+id/salt"
         android:layout_width="50dp"
         android:layout_height="50dp"
-        android:layout_marginStart="17dp"
+        android:layout_marginStart="16dp"
         android:tag="salt"
         app:layout_constraintBottom_toBottomOf="@+id/spicy"
         app:layout_constraintStart_toEndOf="@+id/textView11"
@@ -81,8 +81,8 @@
 
     <TextView
         android:id="@+id/flavor_4"
-        android:layout_width="28dp"
-        android:layout_height="14dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_marginStart="2dp"
         android:text="Salt"
         app:layout_constraintBottom_toTopOf="@+id/acid"

@@ -1,15 +1,20 @@
 package net.tipam2022.pickeat
 
+import android.Manifest.permission.WRITE_EXTERNAL_STORAGE
 import android.content.ContentResolver
 import android.content.Context
 import android.content.Intent
+import android.content.pm.PackageManager
 import android.net.Uri
 import android.os.Bundle
+import android.os.Environment
 import android.webkit.MimeTypeMap
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.app.ActivityCompat
+import androidx.core.content.ContextCompat
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException
 import com.google.firebase.auth.PhoneAuthCredential
@@ -27,8 +32,6 @@ import java.io.FileWriter
 
 class Authenticate: AppCompatActivity() {
 
-    private lateinit var mStorageRef: StorageReference
-    private lateinit var mODatabaseRef: DatabaseReference
 
     lateinit var binding: ActivityAuthenticateBinding
     override fun onCreate(savedInstanceState: Bundle?){
@@ -54,6 +57,8 @@ class Authenticate: AppCompatActivity() {
                 val credential : PhoneAuthCredential = PhoneAuthProvider.getCredential(
                     storedVerificationId.toString(), otp)
                 signInWithPhoneAuthCredential(credential)
+
+
             }
             else{
                 Toast.makeText(this, "Enter OTP", Toast.LENGTH_SHORT).show()
@@ -69,6 +74,8 @@ class Authenticate: AppCompatActivity() {
 
                     uploadUser()
 
+                    //var file = File("PhoneNumber.txt")
+
                     finish()
                     println("ok")
                 } else {
@@ -82,15 +89,30 @@ class Authenticate: AppCompatActivity() {
 
     }
 
-    private fun getExtension(uri: Uri): String? {
-        var cr: ContentResolver = contentResolver
-        var mime: MimeTypeMap = MimeTypeMap.getSingleton()
-        return mime.getExtensionFromMimeType(cr.getType(uri))
-    }
     private fun uploadUser(){
         var user = UploadUser(currentPhone)
         mODatabaseRef.child(currentPhone).setValue(user)
-        Toast.makeText(this, "User saved", Toast.LENGTH_LONG*5 )
     }
 
+    override fun onRequestPermissionsResult(
+        requestCode: Int,
+        permissions: Array<out String>,
+        grantResults: IntArray
+    ) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+        if(requestCode == RC_STORAGE_WRITE_PERMS){
+            if(grantResults[0] == PackageManager.PERMISSION_GRANTED){
+
+            }
+        }
+    }
+
+    private fun checkWriteExternalStoragePermission(): Boolean {
+        if(ContextCompat.checkSelfPermission(this, WRITE_EXTERNAL_STORAGE)!=
+                PackageManager.PERMISSION_GRANTED){
+            ActivityCompat.requestPermissions(this, Array<String>(1){WRITE_EXTERNAL_STORAGE},RC_STORAGE_WRITE_PERMS)
+            return true
+        }
+        return false
+    }
 }

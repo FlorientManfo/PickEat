@@ -1,14 +1,23 @@
 package net.tipam2022.pickeat
 
+import android.content.ContentValues.TAG
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.os.Environment
+import android.util.Log
 import android.widget.ScrollView
+import android.widget.Toast
 import androidx.core.view.size
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.RecyclerView
+import com.google.android.gms.tasks.OnCompleteListener
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.ktx.Firebase
+import com.google.firebase.messaging.FirebaseMessaging
+import com.google.firebase.messaging.ktx.messaging
 import net.tipam2022.pickeat.databinding.ActivityMainBinding
+import java.io.File
 
 class MainActivity : AppCompatActivity() {
 
@@ -22,6 +31,8 @@ class MainActivity : AppCompatActivity() {
         auth = FirebaseAuth.getInstance()
         var currentUer = auth.currentUser
 
+        var file = File("PhoneNumber.txt")
+        currentPhone = readOnFile(this, file)
 
         if (currentUer == null) {
             startActivity(Intent(applicationContext, Login::class.java))
@@ -67,10 +78,23 @@ class MainActivity : AppCompatActivity() {
 
         }
 
+
+
+        Firebase.messaging.subscribeToTopic("New Meal")
+            .addOnCompleteListener { task ->
+                var msg = getString(R.string.msg_subscribed)
+                if (!task.isSuccessful) {
+                    msg = getString(R.string.msg_subscribe_failed)
+                }
+                Log.d(TAG, msg)
+                Toast.makeText(baseContext, msg, Toast.LENGTH_SHORT).show()
+            }
+
         /*binding.category.setOnClickListener{
             loadFragment(Menu())
         }*/
     }
+
 
     private fun loadFragment(fragment: Fragment) {
         // load fragment

@@ -1,38 +1,47 @@
 package net.tipam2022.pickeat
 
 import android.annotation.SuppressLint
+import android.app.Activity
 import android.content.Intent
+import android.content.pm.PackageManager
+import android.graphics.Bitmap
+import android.graphics.BitmapFactory
+import android.graphics.ImageDecoder
+import android.net.Uri
+import android.os.Build
 import android.os.Bundle
+import android.os.Environment
+import android.provider.MediaStore
 import android.view.*
 import android.view.Menu
-import android.widget.Toast
+import android.widget.*
+import androidx.annotation.RequiresApi
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.view.menu.MenuBuilder
+import androidx.core.app.ActivityCompat
+import androidx.core.content.ContextCompat
+import androidx.core.content.FileProvider
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.ValueEventListener
+import com.google.firebase.storage.FirebaseStorage
 import net.tipam2022.pickeat.adapters.PublicationAdapter
 import net.tipam2022.pickeat.databinding.FragmentAccountBinding
 import net.tipam2022.pickeat.entities.MealModel
 import net.tipam2022.pickeat.entities.PublicationModel
+import net.tipam2022.pickeat.upload.UploadAddress
+import net.tipam2022.pickeat.upload.UploadUser
 import java.io.File
 import java.io.FileReader
 import java.util.*
 
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
-
-/**
- * A simple [Fragment] subclass.
- * Use the [Account.newInstance] factory method to
- * create an instance of this fragment.
- */
 class Account : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
+
 
     //Test Values
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -57,6 +66,13 @@ class Account : Fragment() {
     )
 
     lateinit var binding: FragmentAccountBinding
+    private val FILE_NAME = "photo.jpg"
+    private var selectedItem: Uri? = null
+    var selectedBitmap: Bitmap? = null
+    lateinit var mDialogView: View
+    val REQUEST_CODE_CAMERA = 200
+    val REQUEST_CODE_GALLERY = 100
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -71,6 +87,7 @@ class Account : Fragment() {
         val mAdapter = PublicationAdapter(publications)
         recycleView!!.adapter = mAdapter
         println(mAdapter.itemCount)
+        binding.phonenumber.text = currentPhone
 
         val toAppBarr = binding.topAppBar
         toAppBarr.setOnMenuItemClickListener{menuItemListener(it)}
@@ -83,26 +100,6 @@ class Account : Fragment() {
         inflater.inflate(R.menu.profile_option_menu, menu)
         super.onCreateOptionsMenu(menu, inflater)
     }
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment Account.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            Account().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
-                }
-            }
-    }
-
 
     private fun menuItemListener(item: MenuItem): Boolean{
         return when (item.itemId) {
@@ -119,6 +116,7 @@ class Account : Fragment() {
             }
             R.id.edit -> {
                 // save profile changes
+                edit()
                 Toast.makeText(activity, "Edit user!", Toast.LENGTH_SHORT).show()
                 println("Edit!")
                 true
@@ -129,4 +127,84 @@ class Account : Fragment() {
 
     fun readFileDirectlyAsText(fileName: String): String
             = File(fileName).readText(Charsets.UTF_8)
+
+    private fun edit(){
+        mDialogView = LayoutInflater.from(context).inflate(R.layout.layout_edit, null)
+        val mBuilder = AlertDialog.Builder(requireContext())
+        mBuilder.setView(mDialogView)
+        var mAlertDialog = mBuilder.show()
+
+        var name = mDialogView.findViewById<TextView>(R.id.newUsername)
+        var photo = mDialogView.findViewById<ImageView>(R.id.user_profile)
+
+            mDialogView.findViewById<Button>(R.id.save_profile).setOnClickListener {
+
+                 if(!name.text.isEmpty()){
+                     newUserName = name.text.toString()
+                     mAlertDialog.dismiss()
+
+                     saveInformation()
+
+                 }
+                Toast.makeText(context, "Chose an image !", Toast.LENGTH_LONG*7)
+            }
+
+        photo.setOnClickListener {
+
+            val popupMenu = PopupMenu(context, photo)
+            popupMenu.menuInflater.inflate(R.menu.popup_photo_menu, popupMenu.menu)
+
+            popupMenu.setOnMenuItemClickListener(PopupMenu.OnMenuItemClickListener {
+                when(it.itemId) {
+                    R.id.menuItem_openCamera -> capturePhoto()
+                    R.id.menuItem_openGallery -> openGalleryForImage()
+                    else ->true
+                }
+            })
+
+            Toast.makeText(context, "Unable to open camera", Toast.LENGTH_SHORT).show()
+            popupMenu.show()
+        }
+
+        mDialogView.findViewById<Button>(R.id.cancel_profile).setOnClickListener {
+            mAlertDialog.dismiss()
+        }
+    }
+
+    fun capturePhoto(): Boolean {
+
+        val cameraIntent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
+        startActivityForResult(cameraIntent, REQUEST_CODE_CAMERA)
+        return true
+    }
+    private fun openGalleryForImage(): Boolean {
+        val intent = Intent(Intent.ACTION_PICK)
+        intent.type = "image/*"
+        startActivityForResult(intent, REQUEST_CODE_GALLERY)
+        return true
+    }
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if (resultCode == Activity.RESULT_OK && requestCode == REQUEST_CODE_CAMERA && data != null){
+            mDialogView.findViewById<ImageView>(R.id.user_profile).setImageBitmap(data.extras!!.get("data") as Bitmap)
+            binding.circleImageView.setImageBitmap(data.extras!!.get("data") as Bitmap)
+        }
+        if (resultCode == Activity.RESULT_OK && requestCode == REQUEST_CODE_GALLERY){
+            mDialogView.findViewById<ImageView>(R.id.user_profile).setImageURI(data?.data) // handle chosen image
+            binding.circleImageView.setImageURI(data?.data)
+        }
+    }
+
+    private fun saveInformation(){
+        mStorageRef = FirebaseStorage.getInstance().getReference("users")
+        mODatabaseRef = FirebaseDatabase.getInstance().getReference("users")
+        var city: String = mDialogView.findViewById<EditText>(R.id.userCity).text.toString()
+        var street: String = mDialogView.findViewById<EditText>(R.id.userDistrict).text.toString()
+        var name: String = mDialogView.findViewById<EditText>(R.id.newUsername).text.toString()
+        var uploadAddress: UploadAddress = UploadAddress(city, street)
+        binding.phonenumber.text = "681410728"
+        binding.name.text = name
+        var user = UploadUser(currentPhone, name, "photo", uploadAddress, null, null)
+        mODatabaseRef.child("681410728").setValue(user)
+    }
 }

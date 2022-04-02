@@ -132,4 +132,7 @@
     <string name="city_3">Bafoussam</string>
     <string name="city_4">Limbé</string>
     <string name="city_5">Chinese</string>
+    <string name="msg_subscribed">Subscribe success</string>
+    <string name="msg_subscribe_failed">Subscribe failed</string>
+    <string name="msg_token_fmt">Token</string>
 </resources>
