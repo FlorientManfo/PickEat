@@ -132,12 +132,4 @@
     <string name="city_3">Bafoussam</string>
     <string name="city_4">Limbé</string>
     <string name="city_5">Chinese</string>
-    <string name="spinner_name">CategoriesApp</string>
-    <string-array name="categories">
-        <item>Traditional Cameroonian</item>
-        <item>Mexican</item>
-        <item>French</item>
-        <item>Chineese</item>
-        <item>Arab</item>
-    </string-array>
 </resources>

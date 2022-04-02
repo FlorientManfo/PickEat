@@ -9,9 +9,10 @@ class UploadUser {
     var phone: String = String()
     var name: String = String()
     var photo: String = String()
+    var address: UploadAddress = UploadAddress()
     var balanced: Double = 0.0
-    var follower: ArrayList<Objects> = ArrayList()
-    var follows: ArrayList<Objects> = ArrayList()
+    var follower: ArrayList<Objects>? = ArrayList()
+    var follows: ArrayList<Objects>? = ArrayList()
 
     constructor(){
         follower = ArrayList()
@@ -23,12 +24,13 @@ class UploadUser {
     }
 
     constructor(phoneNumber: String, name: String,
-                photo: String,
-                follower: ArrayList<Objects>,
-                follows: ArrayList<Objects>):this(phoneNumber){
+                photo: String, address: UploadAddress,
+                follower: ArrayList<Objects>?,
+                follows: ArrayList<Objects>?):this(phoneNumber){
         this.name = name
         this.photo = photo
         this.follower = follower
         this.follows = follows
+        this.address = address
     }
 }

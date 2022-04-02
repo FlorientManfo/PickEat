@@ -8,6 +8,7 @@ import android.widget.FrameLayout
 import android.widget.ImageView
 import android.widget.RatingBar
 import android.widget.TextView
+import androidx.core.view.isVisible
 import androidx.recyclerview.widget.RecyclerView
 import net.tipam2022.pickeat.R
 import net.tipam2022.pickeat.entities.MenuModel
@@ -65,7 +66,7 @@ class MenuAdapter(private val menuList: ArrayList<MenuModel>):
                     holder.users[i].setImageResource(menuList[position].publicationModels!![i].image)
                     i++
                 }
-                holder.reminder.text= ""
+                holder.reminder.isVisible = false
             }
         }
     }
