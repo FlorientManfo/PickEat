@@ -16,6 +16,7 @@ import com.google.firebase.messaging.RemoteMessage
 const val  channelid="notififcation_channel"
 const val  channelName="net.tipam2022.pickeat"
 class MyFirebaseMessagingService :FirebaseMessagingService(){
+    var test = 0
 
     //generate notification
     //attach the notificatin create whith the custom layout
