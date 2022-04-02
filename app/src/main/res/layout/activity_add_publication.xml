@@ -4,23 +4,29 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/black">
+    tools:context=".PublicationPhoto"
+    android:background="@drawable/login">
 
     <EditText
         android:id="@+id/editTextPrice"
-        android:layout_width="333dp"
-        android:layout_height="47dp"
+        android:layout_width="368dp"
+        android:layout_height="63dp"
         android:layout_marginTop="28dp"
-        android:inputType="number"
         android:background="@drawable/round_edit_text_white"
+        android:drawableLeft="@drawable/pierce"
+        android:ems="10"
+        android:hint="                   prix"
+        android:inputType="number"
+        android:textColorHint="@color/white"
+        android:textSize="25sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/categoriesSpiner" />
 
     <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/circleImageView4"
-        android:layout_width="174dp"
-        android:layout_height="166dp"
+        android:layout_width="176dp"
+        android:layout_height="155dp"
 
         android:layout_marginTop="32dp"
         android:background="@drawable/circle_shape"
@@ -41,13 +47,13 @@
 
     <EditText
         android:id="@+id/editTextMenu"
-        android:layout_width="329dp"
-        android:layout_height="45dp"
+        android:layout_width="385dp"
+        android:layout_height="61dp"
         android:layout_marginTop="44dp"
         android:background="@drawable/round_edit_text_white"
-        android:drawableLeft="@drawable/ic_baseline_set_meal_24"
+        android:drawableLeft="@drawable/namemenu"
         android:ems="10"
-        android:hint=" Name"
+        android:hint="                   Name"
         android:inputType="textPersonName"
         android:textAlignment="textStart"
         android:textColor="@color/white"
@@ -59,8 +65,8 @@
 
     <Spinner
         android:id="@+id/categoriesSpiner"
-        android:layout_width="333dp"
-        android:layout_height="47dp"
+        android:layout_width="375dp"
+        android:layout_height="61dp"
 
         android:layout_marginTop="28dp"
         android:background="@drawable/round_edit_text_white"
@@ -68,5 +74,76 @@
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editTextMenu" />
+
+    <EditText
+        android:id="@+id/editTextTextDescription"
+        android:layout_width="362dp"
+        android:layout_height="115dp"
+        android:layout_marginTop="28dp"
+        android:background="@drawable/round_edit_text_white"
+        android:ems="10"
+        android:gravity="start|top"
+        android:drawableLeft="@drawable/desc"
+        android:inputType="textMultiLine"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.53"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editTextNumberplat" />
+
+    <Button
+        android:id="@+id/btn_big_image_style"
+        android:layout_width="313dp"
+        android:layout_height="55dp"
+
+        android:layout_marginBottom="16dp"
+        android:background="@drawable/round_background"
+        android:text="Publier"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/textViewTag"
+
+        android:layout_width="366dp"
+        android:layout_height="71dp"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/round_edit_text_white"
+        android:hint="                  #tag"
+        android:textColorHint="@color/white"
+        android:drawableLeft="@drawable/tag"
+        android:textColor="@color/white"
+        android:textSize="25sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editTextPrice" />
+
+    <ImageButton
+        android:id="@+id/imageButton2"
+        android:layout_width="37dp"
+        android:layout_height="35dp"
+        android:layout_marginEnd="8dp"
+        android:background="@drawable/ic_baseline_add_circle_24"
+        app:layout_constraintBottom_toBottomOf="@+id/textViewTag"
+        app:layout_constraintEnd_toEndOf="@+id/textViewTag"
+        app:layout_constraintTop_toTopOf="@+id/textViewTag"
+        app:layout_constraintVertical_bias="0.431" />
+
+    <EditText
+        android:id="@+id/editTextNumberplat"
+        android:layout_width="358dp"
+        android:layout_height="75dp"
+        android:layout_marginTop="32dp"
+        android:background="@drawable/round_edit_text_white"
+        android:ems="10"
+
+        android:drawableLeft="@drawable/count"
+        android:hint="                 Nombre de plat"
+        android:inputType="number"
+        android:textColorHint="@color/white"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.512"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textViewTag" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
